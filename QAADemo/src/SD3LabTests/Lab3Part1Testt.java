@@ -75,7 +75,6 @@ public class Lab3Part1Testt {
 						System.out.println("Examining method "+currentMethodName+"...");
 						//////////////////////////////////////////testcode
 						int foo = (int) currentMethod.invoke(t, inputs[0]);
-						System.out.println("lickety split");
 						System.out.println(foo);
 						
 						///////////////////////////////////////////testcode
