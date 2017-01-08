@@ -21,7 +21,7 @@ public class AdvicePopUp {
         //frame.setBorder(BorderFactory.createLineBorder(Color.black));
         frame.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.RED));
 
-        //Add the ubiquitous "Hello World" label.
+        //Add label.
         JLabel label = new JLabel(advice, SwingConstants.CENTER);
         frame.getContentPane().add(label);
 

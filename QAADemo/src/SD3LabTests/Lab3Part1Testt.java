@@ -49,48 +49,38 @@ public class Lab3Part1Testt {
 
 	
 	public static void labTest1() throws ClassNotFoundException {
-		int x =6;
+		//int x =6;
 		
 		try{
 		
 			Class myclass = Class.forName("SD3Labs."+className);
 			Method[] methods = myclass.getDeclaredMethods();
-			//System.out.println(methods.toString());
-			
-			Object t = myclass.newInstance();
+			Object myClassInstance = myclass.newInstance();
 			
 			try {
 				ArrayList<String> methodsList = MethodInfo.showMethods("/"+packageName+"/"+className+".class");
-				//System.out.println(methodsList.toString());
 				Iterator<String> it = methodsList.iterator();
 				System.out.println("Lab 3 Part 1.1");
 				while(it.hasNext()){
 					
 					String currentMethodName = it.next();
 					if(!currentMethodName.equals("<init>")){
-						Method currentMethod = findMethod(methods, currentMethodName);
-						System.out.println("++++++++++++++++++++++"+currentMethod.toString());
+						Method currentMethod = MethodInfo.findMethod(methods, currentMethodName);
 						currentMethod.setAccessible(true);
 						int[] inputs = {15};
 						System.out.println("Examining method "+currentMethodName+"...");
-						//////////////////////////////////////////testcode
-						int foo = (int) currentMethod.invoke(t, inputs[0]);
-						System.out.println(foo);
-						
-						///////////////////////////////////////////testcode
+					
 						
 						try{
-							System.out.println("here");
-							//System.out.println("///////////////////////////"+currentMethod.invoke(5));
+				
 							int[] input = {5,1,0};
-							boolean test1= ((int)currentMethod.invoke(t,input[0]) == 15);
+							boolean test1= ((int)currentMethod.invoke(myClassInstance,input[0]) == 15);
 							
-							answer1 = (int)currentMethod.invoke(t,input[0]);
-							System.out.println("----------------------"+answer1);
-							boolean test2=((int)currentMethod.invoke(t,input[1]) == 1);
-							answer2 = (int)currentMethod.invoke(t,input[1]);
-							boolean test3=((int)currentMethod.invoke(t,input[2]) == 0);
-							answer3 = (int)currentMethod.invoke(t,input[2]);
+							answer1 = (int)currentMethod.invoke(myClassInstance,input[0]);
+							boolean test2=((int)currentMethod.invoke(myClassInstance,input[1]) == 1);
+							answer2 = (int)currentMethod.invoke(myClassInstance,input[1]);
+							boolean test3=((int)currentMethod.invoke(myClassInstance,input[2]) == 0);
+							answer3 = (int)currentMethod.invoke(myClassInstance,input[2]);
 							boolean allTest=(test1&&test2&&test3);
 							boolean partial = ((test1||test2||test3)&&(!allTest));
 							
@@ -156,9 +146,7 @@ public class Lab3Part1Testt {
 					+ "and having them may be an indication that your solution is not recursive.\n"
 					+ "Check edge cases such as an input of 0 are accounted for.\n"+answerList.returnList());
 			
-			System.out.println("The following methods return some expected answers, but not all. "
-					+ "The method does not call itself so does not appear to be recursive. "
-					+ "Check edge cases such as an input of 0 are accounted for.");
+			System.out.println(AdviceStrings.partAnsNonRec());
 			answerList.printList();
 		}
 		else if(lvl==2){
@@ -204,14 +192,14 @@ public class Lab3Part1Testt {
 	
 	
 	
-	static Method findMethod(Method[] methods, String name) {
+	/*static Method findMethod(Method[] methods, String name) {
 		for(Method element : methods){
 			if((element.getName()).equals(name)){
 				return element;
 			}
 		}
 		return null;
-	}
+	}*/
 
 }
 

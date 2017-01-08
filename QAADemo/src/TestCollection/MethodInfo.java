@@ -1,9 +1,11 @@
 package TestCollection;
 
 import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+
 
 
 
@@ -118,7 +120,20 @@ public class MethodInfo {
 		
 		return doesCallSelf;
 	}
+	//This method searches an array of methods for a method thats name matched the given String
+	public static Method findMethod(Method[] methods, String name) {
+		for(Method element : methods){
+			if((element.getName()).equals(name)){
+				return element;
+			}
+		}
+		return null;
+	}
 	
+	public Method[] declaredMethods(Class myclass){
+		Method[] methods = myclass.getDeclaredMethods();
+		return methods;
+	}
 	
 
 }

@@ -28,5 +28,11 @@ public class AdviceStrings {
 				+ "If there are no arguments put empty brackets e.g () .\n"
 				+ "The body of the method goes inside the curly brackets.";
 	}
+	
+	public static String partAnsNonRec(){
+		return "The following methods return some expected answers, but not all. "
+				+ "The method does not call itself so does not appear to be recursive. "
+				+ "Check edge cases such as an input of 0 are accounted for.";
+	}
 
 }
