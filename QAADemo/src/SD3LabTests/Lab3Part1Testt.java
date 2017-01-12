@@ -18,7 +18,7 @@ import java.util.Iterator;
 
 
 
-import SD3Labs.Lab3Part1;
+//import SD3Labs.Lab3Part1;
 
 import org.junit.Test;
 
@@ -53,12 +53,12 @@ public class Lab3Part1Testt {
 		
 		try{
 		
-			Class myclass = Class.forName("SD3Labs."+className);
+			Class myclass = Class.forName("SD3Labs."+className);//"SD3Labs.Lab3Part1"
 			Method[] methods = myclass.getDeclaredMethods();
 			Object myClassInstance = myclass.newInstance();
 			
 			try {
-				ArrayList<String> methodsList = MethodInfo.showMethods("/"+packageName+"/"+className+".class");
+				ArrayList<String> methodsList = MethodInfo.showMethods("/"+packageName+"/"+className+".class");//"SD3Labs/Lab3Part1.class"
 				Iterator<String> it = methodsList.iterator();
 				System.out.println("Lab 3 Part 1.1");
 				while(it.hasNext()){

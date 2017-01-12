@@ -4,15 +4,16 @@ import java.lang.reflect.Method;
 
 public class GetClass {
 	
-	public Class getClass(String className){
+	public static Class getClass(String className, Feedback f){
 		try{
 			
-			Class myclass = Class.forName("SD3Labs."+className);
+			Class myclass = Class.forName(className);
 			return myclass;
 			//Method[] methods = myclass.getDeclaredMethods();
 			
 		} catch (Exception e){
-			AdvicePopUp.showAdvice(AdviceStrings.classAdvice());
+			f.addFeedbackln(AdviceStrings.classAdvice());
+			//AdvicePopUp.showAdvice(AdviceStrings.classAdvice());
 			System.out.println(AdviceStrings.classAdvice());
 		}
 		return null;

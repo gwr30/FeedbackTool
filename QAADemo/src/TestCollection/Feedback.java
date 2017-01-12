@@ -25,5 +25,9 @@ public class Feedback {
 		feedback = f;
 	}
 	
+	public void clear(){
+		feedback = "";
+	}
+	
 
 }

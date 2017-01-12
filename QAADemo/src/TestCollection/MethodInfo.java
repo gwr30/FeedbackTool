@@ -3,8 +3,10 @@ package TestCollection;
 import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+
 
 
 
@@ -28,8 +30,6 @@ public class MethodInfo {
 		 ClassReader cr = new ClassReader(in);
 	        ClassNode cn = new ClassNode();
 	        cr.accept(cn, ClassReader.SKIP_DEBUG);
-	        
-	        
 	        List<MethodNode> methods = cn.methods;
 	        for (int i = 0; i < methods.size(); ++i) {
 	            MethodNode method = methods.get(i);
@@ -120,7 +120,7 @@ public class MethodInfo {
 		
 		return doesCallSelf;
 	}
-	//This method searches an array of methods for a method thats name matched the given String
+	//This method searches an array of methods for a method thats name matches the given String
 	public static Method findMethod(Method[] methods, String name) {
 		for(Method element : methods){
 			if((element.getName()).equals(name)){
@@ -130,9 +130,43 @@ public class MethodInfo {
 		return null;
 	}
 	
-	public Method[] declaredMethods(Class myclass){
+	//This methods returns an array of the declared methods in a given class
+	public static Method[] declaredMethods(Class myclass){
 		Method[] methods = myclass.getDeclaredMethods();
 		return methods;
+	}
+	
+	//This method returns an iterator across a list of methods
+	public static Iterator methodListIterator(Class myclass, String packagename, String classname, Feedback f){
+		
+		try {
+			
+			//Method[] methods = myclass.getDeclaredMethods();
+			//format is "SD3Labs/Lab3Part1.class"
+			ArrayList<String> methodsList = showMethods("/"+packagename+"/"+classname+".class");//"/"+packageName+"/"+className+".class"
+			
+			Iterator<String> it = methodsList.iterator();
+		
+			
+			return it;
+			//System.out.println("Lab 3 Part 1.1");
+			/*while(it.hasNext()){
+				
+				String currentMethodName = it.next();
+				if(!currentMethodName.equals("<init>")){
+					Method currentMethod = MethodInfo.findMethod(methods, currentMethodName);
+					currentMethod.setAccessible(true);
+					int[] inputs = {15};
+					System.out.println("Examining method "+currentMethodName+"...");
+				
+				}
+			}*/
+		} catch (Exception e) {
+			//AdvicePopUp.showAdvice(AdviceStrings.methodAdvice());
+			f.addFeedbackln(AdviceStrings.methodAdvice());
+			System.out.println(AdviceStrings.methodAdvice());
+		}
+		return null;
 	}
 	
 

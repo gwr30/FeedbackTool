@@ -5,6 +5,7 @@ abstract class Criteria {
 	float weight;
 	boolean fulfils_criteria;
 	Feedback feedback;
+	AnswerList answers;
 	
 	Criteria(){
 		
@@ -13,6 +14,7 @@ abstract class Criteria {
 	Criteria(float w){
 		weight = w;
 		fulfils_criteria= false;
+		
 	}
 	
 		//abstract boolean testCriteria();

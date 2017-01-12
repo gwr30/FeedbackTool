@@ -11,18 +11,29 @@ import org.objectweb.asm.tree.InsnList;
 import org.objectweb.asm.tree.MethodInsnNode;
 import org.objectweb.asm.tree.MethodNode;
 
-public class Criteria_Recursive {
+public class Criteria_Recursive extends Criteria {
 	
-	float weight;
 	boolean fufils_criteria;
+	
+	AnswerList answers;
+	static String classPath; 
+	//String methodName;
+	
+	public Criteria_Recursive(float w,  Feedback f, String cPath){
+		super(w);//weight = w;
+		feedback = new Feedback();
+		answers = new AnswerList();
+		classPath = cPath;
+		//methodName = mn;
+	}
 	
 	
 	//This Method returns true if a given method in a given class calls itself
-		public static boolean testCriteria(String className, String methodName)throws Exception{
+		public static boolean testCriteria(String mName)throws Exception{
 			boolean doesCallSelf = false;
 			
 			
-			InputStream in=MethodInfo.class.getResourceAsStream(className);
+			InputStream in=MethodInfo.class.getResourceAsStream(classPath);
 			 ClassReader cr = new ClassReader(in);
 		        ClassNode cn = new ClassNode();
 		        cr.accept(cn, ClassReader.SKIP_DEBUG);
@@ -31,7 +42,7 @@ public class Criteria_Recursive {
 		        List<MethodNode> methods = cn.methods;
 		        for (int i = 0; i < methods.size(); ++i) {
 		            MethodNode method = methods.get(i);
-		            if(method.name.equals(methodName)){
+		            if(method.name.equals(mName)){
 			            if (method.instructions.size() > 0) {
 			            	
 			            	  
@@ -55,6 +66,29 @@ public class Criteria_Recursive {
 		        }
 			
 			return doesCallSelf;
+		}
+		
+		Answer run_test(String methodName) {
+			Answer ans;
+			try {
+				if(testCriteria(methodName)==true){
+					
+					return  ans = new Answer(0, "", 1, "Method calls itself, indicating it is recursive.");
+					//answers.addAnswer(ans);
+				}
+				else{
+					
+					return  ans = new Answer(1, "", 0, "Method does not call itself, indicating it is not recursive.");
+					//answers.addAnswer(ans);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+			
+			
+			//return answers;
+			
 		}
 		
 	// Getter and Setter Methods
