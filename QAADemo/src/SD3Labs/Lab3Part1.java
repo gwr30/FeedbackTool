@@ -7,7 +7,7 @@ public class Lab3Part1 {
 		return "A String output";
 	}
 	
-	 public int summmmmm(int x){
+	public int summmmmm(int x){
 		 return 69;
 	 }
 	 
@@ -15,7 +15,7 @@ public class Lab3Part1 {
 		 return 15;
 	 }
 	 
-	 public int sum(int x){
+	public int sum(int x){
 		 if(x<=0){
 			 return 0;
 		 }

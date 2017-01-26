@@ -14,22 +14,22 @@ public class Summation_Test extends Test {
 	//AnswerList answers1, answers2;
 	String highest_scoring_method;
 	float tempScore = (float)0.0;
-	AnswerCandidates candidates;
-	ArrayList<Criteria> criterion;
+	//AnswerCandidates candidates;
+	//ArrayList<Criteria> criterion;
 	
-	Iterator candIt;
+	//Iterator candIt;
 
 	
 	public Summation_Test(Float maxScore, String packagename, String className, int[] input) throws InstantiationException, IllegalAccessException{
 		
-		super (maxScore);
-		myclass = GetClass.getClass(packagename+"."+className, feedback);
-		Object myClassInstance = myclass.newInstance();
-		method_it = MethodInfo.methodListIterator(myclass, packagename, className ,feedback);
-		methods = MethodInfo.declaredMethods(myclass);
-		String classpath = "/"+packagename+"/"+className+".class";
+		super (maxScore,packagename,className);
+		//myclass = GetClass.getClass(packagename+"."+className, feedback);
+		//Object myClassInstance = myclass.newInstance();
+		//method_it = MethodInfo.methodListIterator(myclass, packagename, className ,feedback);
+		//methods = MethodInfo.declaredMethods(myclass);
+		//String classpath = "/"+packagename+"/"+className+".class";
 		float weight1 = (float) 0.5;
-		candidates = new AnswerCandidates();
+		//candidates = new AnswerCandidates();
 		
 		first_criteria = new Criteria_Sum(weight1, input, myClassInstance, feedback);
 		second_criteria = new Criteria_Recursive(weight1, feedback, classpath);
@@ -41,7 +41,7 @@ public class Summation_Test extends Test {
 	}
 	
 	
-	void run_test() {
+	/*void run_test() {
 		
 		while(method_it.hasNext()){
 			
@@ -75,7 +75,7 @@ public class Summation_Test extends Test {
 		}
 		//return answers1;
 		
-	}
+	}*/
 	
 	/*void calcScore(AnswerList ans){
 		Iterator ansIt1 = answers1.iterator();
