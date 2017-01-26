@@ -36,7 +36,7 @@ abstract class Test {
 				methods = MethodInfo.declaredMethods(myclass);
 			}
 			catch(Exception e){
-				//System.out.println("______________________________________");
+				
 			}
 				
 			classpath = "/"+packageName+"/"+className+".class";
@@ -52,16 +52,11 @@ abstract class Test {
 				
 	}
 	
-	/*public Test(float f){
-		
-		feedback = new Feedback();
-		currentScore =0;
-		maxScore = f;
-		
-	}*/
+
 	
-	public void display_feedback(){
+	public String display_feedback(){
 		AdvicePopUp.showAdvice(feedback.getFeedback());
+		return feedback.getFeedback();
 	}
 	
 	public float getmaxScore(){

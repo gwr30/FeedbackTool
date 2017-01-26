@@ -1,5 +1,7 @@
 package TestCollection;
 
+import java.util.ArrayList;
+
 public class Test_Main {
 
 	public static void main (String [] args) throws InstantiationException, IllegalAccessException{
@@ -8,15 +10,17 @@ public class Test_Main {
 		int[] input1 = {0,1,5,15};
 		int[][] input2= {{5,5},{10,10},{1,1}};
 		float maxScore = (float) 10;
+		ArrayList<String> tabs = new ArrayList<String>();
 		
 		Summation_Test test1 = new Summation_Test(maxScore, packagename, classname, input1);
 		test1.run_test();
-		test1.display_feedback();
+		tabs.add(test1.display_feedback());
 		
 		Multiplication_Test test2 = new Multiplication_Test(maxScore, packagename, classname, input2);
 		test2.run_test();
-		test2.display_feedback();
+		tabs.add(test2.display_feedback());
 		
+		Pane.go(tabs);
 		
 		
 		

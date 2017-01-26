@@ -39,9 +39,9 @@ public class Criteria_Sum extends Criteria{
 					}
 					
 					feedback.addFeedbackln(
-							"Input was:  "+ input[i] +"\n"
-							+ "Expected outcome was:  " +target + "\n"
-							+ "Actual outcome was: "+actual+"\n"
+							"Input was:  "+ input[i] +"<br>"
+							+ "Expected outcome was:  " +target + "<br>"
+							+ "Actual outcome was: "+actual+"<br>"
 						);
 			
 				}

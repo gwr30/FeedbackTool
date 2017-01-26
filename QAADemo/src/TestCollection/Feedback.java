@@ -15,7 +15,7 @@ public class Feedback {
 	}
 	
 	public void addFeedbackln(String f){
-		if (open == true){feedback = feedback + "\n"+f;}
+		if (open == true){feedback = feedback + "<br>"+f;}
 	}
 	
 	public String getFeedback(){

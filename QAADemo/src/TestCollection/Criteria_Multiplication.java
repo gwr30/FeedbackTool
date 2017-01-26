@@ -37,9 +37,9 @@ public class Criteria_Multiplication extends Criteria{
 					}
 					
 					feedback.addFeedbackln(
-							"Input was:  "+ input[i][0]+ " and " +input[i][1] +"\n"
-							+ "Expected outcome was:  " +target + "\n"
-							+ "Actual outcome was: "+actual+"\n"
+							"Input was:  "+ input[i][0]+ " and " +input[i][1] +"<br>"
+							+ "Expected outcome was:  " +target + "<br>"
+							+ "Actual outcome was: "+actual+"<br>"
 						);
 			
 				}
