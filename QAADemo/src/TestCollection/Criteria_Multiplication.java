@@ -1,19 +1,17 @@
 package TestCollection;
 
-
 import java.lang.reflect.Method;
 
+public class Criteria_Multiplication extends Criteria{
 
-public class Criteria_Sum extends Criteria{
-	
-	int[] input;
+	int[][] input;
 	Object myClassInstance;
 	int input_length;
 	int correct_answers;
 	AnswerList answers;
 	Answer ans;
 	
-	public Criteria_Sum(float w, int[] i, Object mci, Feedback f){
+	public Criteria_Multiplication(float w, int[][] i, Object mci, Feedback f){
 		super(w); //weight
 		input = i;
 		myClassInstance = mci;
@@ -27,19 +25,19 @@ public class Criteria_Sum extends Criteria{
 	public Answer testCriteria(String methodName, Method currentMethod) //throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 	{	
 		
-		feedback.addFeedbackln("Checking sum criteria....");
+		feedback.addFeedbackln("Checking mult criteria....");
 			
 		try{
 				for(int i =0; i<input.length; i++){
-					int target = sum(input[i]);					
-					int actual = (int)currentMethod.invoke(myClassInstance, input[i]);
+					int target = mult(input[i][0], input[i][1]);		
+					int actual = (int)currentMethod.invoke(myClassInstance, input[i][0], input[i][1]);
 					
 					if ( target == actual){
 						correct_answers++;
 					}
 					
 					feedback.addFeedbackln(
-							"Input was:  "+ input[i] +"\n"
+							"Input was:  "+ input[i][0]+ " and " +input[i][1] +"\n"
 							+ "Expected outcome was:  " +target + "\n"
 							+ "Actual outcome was: "+actual+"\n"
 						);
@@ -55,7 +53,8 @@ public class Criteria_Sum extends Criteria{
 		}
 		catch (Exception e) {
 			feedback.addFeedbackln("Unable to invoke method with the given input.");
-			ans=ans=new Answer(correct_answers, methodName,input.length, feedback.getFeedback(), weight);
+			ans=ans=new Answer(correct_answers, methodName,input.length, feedback.getFeedback(), (float)0);
+			feedback.clear();
 			
 		}
 		
@@ -66,13 +65,7 @@ public class Criteria_Sum extends Criteria{
 	
 	 
 	
-	public int sum(int x){
-		 if(x<=0){
-			 return 0;
-		 }
-		 else{
-			 return x + (sum(x-1));
-		 }
+	public int mult(int x, int y){
+		 return x*y;
 	 }
-
 }

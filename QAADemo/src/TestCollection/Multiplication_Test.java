@@ -1,11 +1,9 @@
 package TestCollection;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 
-public class Summation_Test extends Test {
+public class Multiplication_Test  extends Test {
 	
 	
 	Criteria first_criteria; 
@@ -17,13 +15,13 @@ public class Summation_Test extends Test {
 
 
 	
-	public Summation_Test(Float maxScore, String packagename, String className, int[] input) throws InstantiationException, IllegalAccessException{
+	public Multiplication_Test(Float maxScore, String packagename, String className, int[][] input) throws InstantiationException, IllegalAccessException{
 		
 		super (maxScore,packagename,className);
 		float weight1 = (float) 0.5;
 	
 		
-		first_criteria = new Criteria_Sum(weight1, input, myClassInstance, feedback);
+		first_criteria = new Criteria_Multiplication(weight1, input, myClassInstance, feedback);
 		second_criteria = new Criteria_Recursive(weight1, feedback, classpath);
 		
 		criterion= new ArrayList<Criteria>();

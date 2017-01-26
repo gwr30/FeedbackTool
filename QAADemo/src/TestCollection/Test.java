@@ -36,7 +36,7 @@ abstract class Test {
 				methods = MethodInfo.declaredMethods(myclass);
 			}
 			catch(Exception e){
-				System.out.println("______________________________________");
+				//System.out.println("______________________________________");
 			}
 				
 			classpath = "/"+packageName+"/"+className+".class";

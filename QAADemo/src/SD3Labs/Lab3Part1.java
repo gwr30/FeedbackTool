@@ -23,6 +23,16 @@ public class Lab3Part1 {
 			 return x + (sum(x-1));
 		 }
 	 }
+	
+	public int mult(int x, int y){
+		
+		if(y==0){
+			return 0;
+		}
+		else{
+			return x+mult(x,y-1);
+		}
+	}
 
 
 	}

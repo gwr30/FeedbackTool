@@ -19,7 +19,7 @@ abstract class Criteria {
 		
 	}
 	
-		//abstract boolean testCriteria();
+		
 	
 	// Getter and Setter Methods
 		public void setWeight(float f){

@@ -52,7 +52,6 @@ public class Method_Test_Results {
 		while(ansIt.hasNext()){
 			Answer current = (Answer) ansIt.next();
 			float weight = (current.getWeight());
-			System.out.println(weight);
 			score = score +(((maxScore*weight)*current.allCorrectInt()));
 			
 			
@@ -67,7 +66,6 @@ public class Method_Test_Results {
 		while(ansIt.hasNext()){
 			Answer current = (Answer) ansIt.next();
 			float weight = (current.getWeight());
-			System.out.println(weight);
 			score = score +(((maxScore*weight)/current.getMax())*current.getLevel());
 			
 			
