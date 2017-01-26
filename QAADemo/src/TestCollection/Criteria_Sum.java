@@ -26,7 +26,7 @@ public class Criteria_Sum extends Criteria{
 	
 	public Answer testCriteria(String methodName, Method currentMethod) //throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 	{	
-
+		
 		feedback.addFeedbackln("Checking sum criteria....");
 			
 		try{

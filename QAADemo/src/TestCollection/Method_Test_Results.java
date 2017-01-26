@@ -45,5 +45,34 @@ public class Method_Test_Results {
 	public Feedback getFeedback(){
 		return feed;
 	}
+	
+	public float getScore(float maxScore){
+		Iterator ansIt = answers.iterator();
+		float score =(float)0;
+		while(ansIt.hasNext()){
+			Answer current = (Answer) ansIt.next();
+			float weight = (current.getWeight());
+			System.out.println(weight);
+			score = score +(((maxScore*weight)*current.allCorrectInt()));
+			
+			
+		}
+		return score;
+	}
+	
+	
+	public float getGradiatedScore(float maxScore){
+		Iterator ansIt = answers.iterator();
+		float score =(float)0;
+		while(ansIt.hasNext()){
+			Answer current = (Answer) ansIt.next();
+			float weight = (current.getWeight());
+			System.out.println(weight);
+			score = score +(((maxScore*weight)/current.getMax())*current.getLevel());
+			
+			
+		}
+		return score;
+	}
 
 }

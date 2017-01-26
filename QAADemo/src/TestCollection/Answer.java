@@ -8,6 +8,7 @@ public class Answer {
 	String methodName;
 	String answerFeedback;
 	
+	
 	public Answer(int l, String m){
 		level=l;
 		methodName=m;
@@ -20,6 +21,7 @@ public class Answer {
 		level=l;
 		methodName=m;
 		max=mx;
+		weight =w;
 		
 	}
 	
@@ -28,6 +30,7 @@ public class Answer {
 		methodName=m;
 		answerFeedback=f;
 		max=mx;
+		weight =w;
 	}
 	
 	public String getName(){

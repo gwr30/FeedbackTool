@@ -73,6 +73,7 @@ abstract class Test {
 	}
 	
 void run_test() {
+		//Float tempScore=(float)0;
 		try{
 			while(method_it.hasNext()){
 				
@@ -90,6 +91,7 @@ void run_test() {
 						
 						Criteria current = critIt.next();
 						results = current.testCriteria(currentMethodName, currentMethod);
+						
 						mtr.addAnswer(results);
 					}					
 					candidates.addResult(mtr);
@@ -102,7 +104,8 @@ void run_test() {
 				Method_Test_Results currAn = (Method_Test_Results) candIt.next();
 				feedback.addFeedbackln(currAn.getFeedback().getFeedback());
 				String scr = Float.toString(currAn.getRanking());
-				feedback.addFeedbackln("Score is : "+scr);
+				String s = Float.toString(currAn.getScore(maxScore));
+				feedback.addFeedbackln("Score is : "+ s + " out of "+maxScore);
 			}
 		}
 		catch(Exception e){
