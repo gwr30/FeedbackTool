@@ -1,5 +1,7 @@
 package TestCollection;
 
+import java.lang.reflect.Method;
+
 abstract class Criteria {
 	
 	float weight;
@@ -31,6 +33,8 @@ abstract class Criteria {
 		public boolean queryFulfiled(){
 			return fulfils_criteria;
 		}
+		
+		abstract Answer testCriteria(String methodName, Method currentMethod);
 
 
 }

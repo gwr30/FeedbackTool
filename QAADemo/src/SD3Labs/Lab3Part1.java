@@ -3,7 +3,10 @@ package SD3Labs;
 public class Lab3Part1 {
 	//Sum Of Numbers
 	   
-	 
+	public String wrong(String z){
+		return "A String output";
+	}
+	
 	 public int summmmmm(int x){
 		 return 69;
 	 }

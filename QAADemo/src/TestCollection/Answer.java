@@ -4,6 +4,7 @@ public class Answer {
 	
 	int level;
 	int max;
+	float weight;
 	String methodName;
 	String answerFeedback;
 	
@@ -12,16 +13,17 @@ public class Answer {
 		methodName=m;
 		max=-1;
 		
+		
 	}
 	
-	public Answer(int l, String m, int mx){
+	public Answer(int l, String m, int mx, float w){
 		level=l;
 		methodName=m;
 		max=mx;
 		
 	}
 	
-	public Answer(int l, String m, int mx, String f){
+	public Answer(int l, String m, int mx, String f, float w){
 		level=l;
 		methodName=m;
 		answerFeedback=f;
@@ -46,6 +48,13 @@ public class Answer {
 	
 	public int getMax(){
 		return max;
+	}
+	
+	public float getWeight(){
+		return weight;
+	}
+	public void setWeight(float f){
+		weight = f;
 	}
 	
 	public Boolean allCorrectBool(){

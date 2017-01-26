@@ -1,6 +1,7 @@
 package TestCollection;
 
 import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -29,7 +30,7 @@ public class Criteria_Recursive extends Criteria {
 	
 	
 	//This Method returns true if a given method in a given class calls itself
-		public static boolean testCriteria(String mName)throws Exception{
+		public static boolean checkIfRecursive(String mName)throws Exception{
 			boolean doesCallSelf = false;
 			
 			
@@ -68,17 +69,17 @@ public class Criteria_Recursive extends Criteria {
 			return doesCallSelf;
 		}
 		
-		Answer run_test(String methodName) {
+		Answer testCriteria(String methodName, Method method) {
 			Answer ans;
 			try {
-				if(testCriteria(methodName)==true){
+				if(checkIfRecursive(methodName)==true){
 					
-					return  ans = new Answer(0, "", 1, "Method calls itself, indicating it is recursive.");
+					return  ans = new Answer(1, methodName, 1, "Method calls itself, indicating it is recursive.", weight);
 					//answers.addAnswer(ans);
 				}
 				else{
 					
-					return  ans = new Answer(1, "", 0, "Method does not call itself, indicating it is not recursive.");
+					return  ans = new Answer(0, methodName, 1, "Method does not call itself, indicating it is not recursive.", weight);
 					//answers.addAnswer(ans);
 				}
 			} catch (Exception e) {
@@ -103,5 +104,8 @@ public class Criteria_Recursive extends Criteria {
 		public boolean queryFulfiled(){
 			return fufils_criteria;
 		}
+
+
+		
 
 }

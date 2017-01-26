@@ -1,19 +1,24 @@
 package TestCollection;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class Summation_Test extends Test {
 	
 	
-	Criteria_Sum first_criteria; 
-	Criteria_Recursive second_criteria;
+	Criteria first_criteria; 
+	Criteria second_criteria;
 	Iterator<String> method_it;
-	Class myclass;
-	Method[] methods;
-	AnswerList answers1, answers2;
+	//AnswerList answers1, answers2;
 	String highest_scoring_method;
 	float tempScore = (float)0.0;
+	AnswerCandidates candidates;
+	ArrayList<Criteria> criterion;
+	
+	Iterator candIt;
+
 	
 	public Summation_Test(Float maxScore, String packagename, String className, int[] input) throws InstantiationException, IllegalAccessException{
 		
@@ -22,58 +27,57 @@ public class Summation_Test extends Test {
 		Object myClassInstance = myclass.newInstance();
 		method_it = MethodInfo.methodListIterator(myclass, packagename, className ,feedback);
 		methods = MethodInfo.declaredMethods(myclass);
-		answers1 = new AnswerList();
-		answers2 = new AnswerList();
 		String classpath = "/"+packagename+"/"+className+".class";
 		float weight1 = (float) 0.5;
-		
+		candidates = new AnswerCandidates();
 		
 		first_criteria = new Criteria_Sum(weight1, input, myClassInstance, feedback);
-		
-		//   "/"+packageName+"/"+className+".class"
 		second_criteria = new Criteria_Recursive(weight1, feedback, classpath);
 		
+		criterion= new ArrayList<Criteria>();
+		criterion.add(first_criteria);
+		criterion.add(second_criteria);
 		
 	}
 	
 	
-	AnswerList run_test() {
+	void run_test() {
 		
 		while(method_it.hasNext()){
 			
 			String currentMethodName = method_it.next();
+			Answer results;
+			
 			if(!currentMethodName.equals("<init>")){
 				Method currentMethod = MethodInfo.findMethod(methods, currentMethodName);
 				currentMethod.setAccessible(true);
 				
+				Method_Test_Results mtr = new Method_Test_Results(currentMethodName);
+				Iterator<Criteria> critIt = criterion.iterator();
 				
-				
-				Answer result1 = first_criteria.testCriteria(currentMethod);
-				result1.setName(currentMethodName);
-				answers1.addAnswer(result1);
-				
-				Answer result2 = second_criteria.run_test(currentMethodName);
-				result2.setName(currentMethodName);
-				answers2.addAnswer(result2);
-				
-				
-				tempScore=((result1.allCorrectInt()*first_criteria.getWeight())* maxScore)+
-				((result2.allCorrectInt()*first_criteria.getWeight())* maxScore);
-				if(tempScore>currentScore){
-					currentScore=tempScore;
-					highest_scoring_method = currentMethodName; 
-				}
+				while(critIt.hasNext()){
+					
+					Criteria current = critIt.next();
+					results = current.testCriteria(currentMethodName, currentMethod);
+					mtr.addAnswer(results);
+				}					
+				candidates.addResult(mtr);
 				
 			}
 		}
-		//getScore(answers1);
-		//getScore(answers2);
-		System.out.println("SCORE = "+currentScore);
-		return answers1;
+		
+		candIt = candidates.iterator();
+		while (candIt.hasNext()){
+			Method_Test_Results currAn = (Method_Test_Results) candIt.next();
+			feedback.addFeedbackln(currAn.getFeedback().getFeedback());
+			String scr = Float.toString(currAn.getRanking());
+			feedback.addFeedbackln("Score is : "+scr);
+		}
+		//return answers1;
 		
 	}
 	
-	void calcScore(AnswerList ans){
+	/*void calcScore(AnswerList ans){
 		Iterator ansIt1 = answers1.iterator();
 		while(ansIt1.hasNext()){
 			Answer current = (Answer) ansIt1.next();
@@ -81,7 +85,7 @@ public class Summation_Test extends Test {
 			feedback.addFeedbackln(current.getFeedback());
 			currentScore=currentScore+(current.allCorrectInt()*first_criteria.getWeight())* maxScore;
 		}
-	}
+	}*/
 	
 	
 	
