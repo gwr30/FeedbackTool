@@ -21,29 +21,44 @@ abstract class Test {
 	Iterator candIt;
 
 
-	public Test(Float mxScore, String pname, String cname)throws InstantiationException, IllegalAccessException{
+	public Test(Float mxScore, String pname, String cname){
 		
 		maxScore = mxScore;
 		packageName = pname;
-		String className = cname;
-		myclass = GetClass.getClass(packageName+"."+className, feedback);
-		myClassInstance = myclass.newInstance();
-		method_it = MethodInfo.methodListIterator(myclass, packageName, className ,feedback);
-		methods = MethodInfo.declaredMethods(myclass);
-		classpath = "/"+packageName+"/"+className+".class";
+		className = cname;
 		feedback = new Feedback();
-		currentScore =0;
-		candidates = new AnswerCandidates();
+		try{
+			myclass = GetClass.getClass(packageName+"."+className, feedback);
+			myClassInstance = myclass.newInstance();
+			
+			try{
+				method_it = MethodInfo.methodListIterator(myclass, packageName, className ,feedback);
+				methods = MethodInfo.declaredMethods(myclass);
+			}
+			catch(Exception e){
+				System.out.println("______________________________________");
+			}
+				
+			classpath = "/"+packageName+"/"+className+".class";
+			feedback = new Feedback();
+			currentScore =0;
+			candidates = new AnswerCandidates();
+			
+		}
+		catch(Exception e){
+			feedback.addFeedbackln("Unable to find class of name " + className);
+			feedback.close();
+		}
 				
 	}
 	
-	public Test(float f){
+	/*public Test(float f){
 		
 		feedback = new Feedback();
 		currentScore =0;
 		maxScore = f;
 		
-	}
+	}*/
 	
 	public void display_feedback(){
 		AdvicePopUp.showAdvice(feedback.getFeedback());
@@ -58,38 +73,42 @@ abstract class Test {
 	}
 	
 void run_test() {
-		
-		while(method_it.hasNext()){
-			
-			String currentMethodName = method_it.next();
-			Answer results;
-			
-			if(!currentMethodName.equals("<init>")){
-				Method currentMethod = MethodInfo.findMethod(methods, currentMethodName);
-				currentMethod.setAccessible(true);
+		try{
+			while(method_it.hasNext()){
 				
-				Method_Test_Results mtr = new Method_Test_Results(currentMethodName);
-				Iterator<Criteria> critIt = criterion.iterator();
+				String currentMethodName = method_it.next();
+				Answer results;
 				
-				while(critIt.hasNext()){
+				if(!currentMethodName.equals("<init>")){
+					Method currentMethod = MethodInfo.findMethod(methods, currentMethodName);
+					currentMethod.setAccessible(true);
 					
-					Criteria current = critIt.next();
-					results = current.testCriteria(currentMethodName, currentMethod);
-					mtr.addAnswer(results);
-				}					
-				candidates.addResult(mtr);
-				
+					Method_Test_Results mtr = new Method_Test_Results(currentMethodName);
+					Iterator<Criteria> critIt = criterion.iterator();
+					
+					while(critIt.hasNext()){
+						
+						Criteria current = critIt.next();
+						results = current.testCriteria(currentMethodName, currentMethod);
+						mtr.addAnswer(results);
+					}					
+					candidates.addResult(mtr);
+					
+				}
+			}
+			
+			candIt = candidates.iterator();
+			while (candIt.hasNext()){
+				Method_Test_Results currAn = (Method_Test_Results) candIt.next();
+				feedback.addFeedbackln(currAn.getFeedback().getFeedback());
+				String scr = Float.toString(currAn.getRanking());
+				feedback.addFeedbackln("Score is : "+scr);
 			}
 		}
-		
-		candIt = candidates.iterator();
-		while (candIt.hasNext()){
-			Method_Test_Results currAn = (Method_Test_Results) candIt.next();
-			feedback.addFeedbackln(currAn.getFeedback().getFeedback());
-			String scr = Float.toString(currAn.getRanking());
-			feedback.addFeedbackln("Score is : "+scr);
+		catch(Exception e){
+			System.out.println("-----------------------");
+			feedback.addFeedbackln("Unable to find any methods.");
 		}
-		//return answers1;
 		
 	}
 	

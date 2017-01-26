@@ -56,8 +56,8 @@ public class Criteria_Sum extends Criteria{
 		catch (Exception e) {
 			feedback.addFeedbackln("Unable to invoke method with the given input.");
 			ans=ans=new Answer(correct_answers, methodName,input.length, feedback.getFeedback(), weight);
-			AdvicePopUp.showAdvice(AdviceStrings.methodAdvice());
-			System.out.println(AdviceStrings.methodAdvice());
+			//AdvicePopUp.showAdvice(AdviceStrings.methodAdvice());
+			//System.out.println(AdviceStrings.methodAdvice());
 		}
 		
 		return ans;

@@ -9,9 +9,9 @@ public class Lab3Part1 {
 	
 	public int summmmmm(int x){
 		 return 69;
-	 }
+	}
 	 
-	 public int rttttttttt(int x){
+		 public int rttttttttt(int x){
 		 return 15;
 	 }
 	 
