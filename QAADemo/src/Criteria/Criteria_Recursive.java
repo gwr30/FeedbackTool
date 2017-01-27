@@ -1,6 +1,8 @@
-package TestCollection;
+package Criteria;
 
 import java.io.InputStream;
+import TestCollection.*;
+import TestLibrary.*;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.ListIterator;
@@ -69,7 +71,7 @@ public class Criteria_Recursive extends Criteria {
 			return doesCallSelf;
 		}
 		
-		Answer testCriteria(String methodName, Method method) {
+		public Answer testCriteria(String methodName, Method method) {
 			Answer ans;
 			try {
 				if(checkIfRecursive(methodName)==true){

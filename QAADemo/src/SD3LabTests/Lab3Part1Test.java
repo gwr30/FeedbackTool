@@ -1,6 +1,9 @@
 package SD3LabTests;
 
 import static org.junit.Assert.*;
+import TestLibrary.*;
+import Criteria.*;
+import TestCollection.*;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -20,11 +23,7 @@ import java.util.Iterator;
 
 import org.junit.Test;
 
-import TestCollection.AdvicePopUp;
-import TestCollection.AdviceStrings;
-import TestCollection.Answer;
-import TestCollection.AnswerList;
-import TestCollection.MethodInfo;
+
 
 public class Lab3Part1Test {
 	

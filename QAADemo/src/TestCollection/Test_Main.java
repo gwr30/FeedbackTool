@@ -7,6 +7,7 @@ to test the class(es) against.
 package TestCollection;
 
 import java.util.ArrayList;
+import TestLibrary.*;
 
 public class Test_Main {
 

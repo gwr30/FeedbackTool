@@ -1,4 +1,4 @@
-package TestCollection;
+package TestLibrary;
 
 import java.lang.reflect.Method;
 

@@ -1,4 +1,4 @@
-package TestCollection;
+package TestLibrary;
 
 public class Answer {
 	

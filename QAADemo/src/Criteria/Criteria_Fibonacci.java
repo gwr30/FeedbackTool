@@ -1,10 +1,12 @@
-package TestCollection;
-
+package Criteria;
 
 import java.lang.reflect.Method;
 
+import TestCollection.*;
+import TestLibrary.*;
 
-public class Criteria_Sum extends Criteria{
+
+public class Criteria_Fibonacci extends Criteria{
 	
 	int[] input;
 	Object myClassInstance;
@@ -13,7 +15,7 @@ public class Criteria_Sum extends Criteria{
 	AnswerList answers;
 	Answer ans;
 	
-	public Criteria_Sum(float w, int[] i, Object mci, Feedback f){
+	public Criteria_Fibonacci(float w, int[] i, Object mci, Feedback f){
 		super(w); //weight
 		input = i;
 		myClassInstance = mci;
@@ -24,14 +26,14 @@ public class Criteria_Sum extends Criteria{
 	}
 
 	
-	public Answer testCriteria(String methodName, Method currentMethod) //throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public Answer testCriteria(String methodName, Method currentMethod) 
 	{	
 		
 		feedback.addFeedbackln("Checking sum criteria....");
 			
 		try{
 				for(int i =0; i<input.length; i++){
-					int target = sum(input[i]);					
+					int target = fibonacci(input[i]);					
 					int actual = (int)currentMethod.invoke(myClassInstance, input[i]);
 					
 					if ( target == actual){
@@ -66,13 +68,14 @@ public class Criteria_Sum extends Criteria{
 	
 	 
 	
-	public int sum(int x){
-		 if(x<=0){
-			 return 0;
-		 }
-		 else{
-			 return x + (sum(x-1));
-		 }
-	 }
+	public int fibonacci(int n)  {
+	    if(n == 0)
+	        return 0;
+	    else if(n == 1)
+	      return 1;
+	   else
+	      return fibonacci(n - 1) + fibonacci(n - 2);
+	}
+	 
 
 }

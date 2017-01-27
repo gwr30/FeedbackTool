@@ -1,4 +1,4 @@
-package TestCollection;
+package TestLibrary;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTabbedPane;

@@ -3,11 +3,13 @@
  *All criteria have a weight that indicates how much they contribute to the
  *overall score of the test. 
  */
-package TestCollection;
+package Criteria;
 
 import java.lang.reflect.Method;
+import TestCollection.*;
+import TestLibrary.*;
 
-abstract class Criteria {
+public abstract class Criteria {
 	
 	float weight;
 	boolean fulfils_criteria;
@@ -39,7 +41,7 @@ abstract class Criteria {
 			return fulfils_criteria;
 		}
 		
-		abstract Answer testCriteria(String methodName, Method currentMethod);
+		public abstract Answer testCriteria(String methodName, Method currentMethod);
 
 
 }

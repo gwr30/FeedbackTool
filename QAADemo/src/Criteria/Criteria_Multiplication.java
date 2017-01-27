@@ -1,17 +1,19 @@
-package TestCollection;
+package Criteria;
 
 import java.lang.reflect.Method;
+import TestCollection.*;
+import TestLibrary.*;
 
-public class Criteria_Fibonacci extends Criteria{
-	
-	int[] input;
+public class Criteria_Multiplication extends Criteria{
+
+	int[][] input;
 	Object myClassInstance;
 	int input_length;
 	int correct_answers;
 	AnswerList answers;
 	Answer ans;
 	
-	public Criteria_Fibonacci(float w, int[] i, Object mci, Feedback f){
+	public Criteria_Multiplication(float w, int[][] i, Object mci, Feedback f){
 		super(w); //weight
 		input = i;
 		myClassInstance = mci;
@@ -22,22 +24,22 @@ public class Criteria_Fibonacci extends Criteria{
 	}
 
 	
-	public Answer testCriteria(String methodName, Method currentMethod) 
+	public Answer testCriteria(String methodName, Method currentMethod) //throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 	{	
 		
-		feedback.addFeedbackln("Checking sum criteria....");
+		feedback.addFeedbackln("Checking mult criteria....");
 			
 		try{
 				for(int i =0; i<input.length; i++){
-					int target = fibonacci(input[i]);					
-					int actual = (int)currentMethod.invoke(myClassInstance, input[i]);
+					int target = mult(input[i][0], input[i][1]);		
+					int actual = (int)currentMethod.invoke(myClassInstance, input[i][0], input[i][1]);
 					
 					if ( target == actual){
 						correct_answers++;
 					}
 					
 					feedback.addFeedbackln(
-							"Input was:  "+ input[i] +"<br>"
+							"Input was:  "+ input[i][0]+ " and " +input[i][1] +"<br>"
 							+ "Expected outcome was:  " +target + "<br>"
 							+ "Actual outcome was: "+actual+"<br>"
 						);
@@ -53,7 +55,8 @@ public class Criteria_Fibonacci extends Criteria{
 		}
 		catch (Exception e) {
 			feedback.addFeedbackln("Unable to invoke method with the given input.");
-			ans=ans=new Answer(correct_answers, methodName,input.length, feedback.getFeedback(), weight);
+			ans=ans=new Answer(correct_answers, methodName,input.length, feedback.getFeedback(), (float)0);
+			feedback.clear();
 			
 		}
 		
@@ -64,14 +67,7 @@ public class Criteria_Fibonacci extends Criteria{
 	
 	 
 	
-	public int fibonacci(int n)  {
-	    if(n == 0)
-	        return 0;
-	    else if(n == 1)
-	      return 1;
-	   else
-	      return fibonacci(n - 1) + fibonacci(n - 2);
-	}
-	 
-
+	public int mult(int x, int y){
+		 return x*y;
+	 }
 }

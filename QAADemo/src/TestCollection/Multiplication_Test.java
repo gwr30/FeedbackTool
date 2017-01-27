@@ -1,6 +1,8 @@
 package TestCollection;
 
 import java.util.ArrayList;
+import Criteria.*;
+import TestLibrary.*;
 import java.util.Iterator;
 
 public class Multiplication_Test  extends Test {
