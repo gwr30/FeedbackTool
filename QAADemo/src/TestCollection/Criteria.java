@@ -1,3 +1,8 @@
+/*Tests are comprised of one or more criteria, that a classes methods are tested against,
+ * as provided by this class
+ *All criteria have a weight that indicates how much they contribute to the
+ *overall score of the test. 
+ */
 package TestCollection;
 
 import java.lang.reflect.Method;

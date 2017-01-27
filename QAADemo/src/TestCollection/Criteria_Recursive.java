@@ -79,7 +79,7 @@ public class Criteria_Recursive extends Criteria {
 				}
 				else{
 					
-					return  ans = new Answer(0, methodName, 1, "Method does not call itself, indicating it is not recursive.", weight);
+					return  ans = new Answer(0, methodName, 1, AdviceStrings.notRecursive(), weight);
 					//answers.addAnswer(ans);
 				}
 			} catch (Exception e) {

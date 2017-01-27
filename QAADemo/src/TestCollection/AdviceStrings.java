@@ -34,5 +34,10 @@ public class AdviceStrings {
 				+ "The method does not call itself so does not appear to be recursive. "
 				+ "Check edge cases such as an input of 0 are accounted for.";
 	}
+	
+	public static String notRecursive(){
+		return  "The method does not call itself so does not appear to be recursive.<br> "
+				+ "Check edge cases such as an input of 0 are accounted for.";
+	}
 
 }

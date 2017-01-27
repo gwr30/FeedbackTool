@@ -10,6 +10,7 @@ public class Method_Test_Results {
 	float ranking;
 	//int number_of_answers;
 	ArrayList<Answer> answers;
+	Boolean deal_breaker = false;
 	
 	
 	public Method_Test_Results(String mn){
@@ -18,14 +19,12 @@ public class Method_Test_Results {
 		feed = new Feedback();
 		ranking = (float)0.0;
 		feed.addFeedbackln("For method "+methodName);
-		//number_of_answers = 0;
 		answers = new ArrayList<Answer>();
 		
 	}
 	
 	
 	public void addAnswer(Answer a){
-		//number_of_answers++;
 		feed.addFeedbackln(a.getFeedback());
 		answers.add(a);
 		ranking = 0;
@@ -56,7 +55,8 @@ public class Method_Test_Results {
 			
 			
 		}
-		return score;
+		if(deal_breaker == false){return score;}
+		else return (float)0;
 	}
 	
 	
@@ -70,7 +70,12 @@ public class Method_Test_Results {
 			
 			
 		}
-		return score;
+		if(deal_breaker == false){return score;}
+		else return (float)0;
+	}
+	
+	void deal_breaker(){
+		deal_breaker =true;
 	}
 
 }

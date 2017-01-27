@@ -1,3 +1,4 @@
+//This class extends the test class to create a test 
 package TestCollection; 
 
 import java.lang.reflect.Method;
