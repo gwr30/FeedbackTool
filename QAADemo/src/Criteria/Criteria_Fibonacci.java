@@ -29,7 +29,7 @@ public class Criteria_Fibonacci extends Criteria{
 	public Answer testCriteria(String methodName, Method currentMethod) 
 	{	
 		
-		feedback.addFeedbackln("Checking sum criteria....");
+		feedback.addFeedbackln("Checking fibonacci criteria....");
 			
 		try{
 				for(int i =0; i<input.length; i++){
@@ -56,7 +56,9 @@ public class Criteria_Fibonacci extends Criteria{
 			
 		}
 		catch (Exception e) {
-			feedback.addFeedbackln("Unable to invoke method with the given input.");
+			feedback.addFeedbackln("Unable to invoke method with the given input.<br>"+
+					"Check that your method takes the correct variable type.<br>"+
+					"This is set when creating the method."+AdviceStrings.methodAdvice() );
 			ans=ans=new Answer(correct_answers, methodName,input.length, feedback.getFeedback(), weight);
 			
 		}

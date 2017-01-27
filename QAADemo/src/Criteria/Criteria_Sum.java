@@ -49,6 +49,10 @@ public class Criteria_Sum extends Criteria{
 				}
 				
 				feedback.addFeedbackln(correct_answers + " out of " + (input.length) + " correct.");
+				if(correct_answers<input.length){
+					feedback.addFeedbackln("Not all answers were correct. <br>+"
+							+ "Check edge cases such as zeros and negative numbers are accounted for." );
+				}
 				ans=new Answer(correct_answers, methodName,input.length, feedback.getFeedback(), weight);
 
 				correct_answers = 0;
@@ -56,7 +60,9 @@ public class Criteria_Sum extends Criteria{
 			
 		}
 		catch (Exception e) {
-			feedback.addFeedbackln("Unable to invoke method with the given input.");
+			feedback.addFeedbackln("Unable to invoke method with the given input.<br>"+
+					"Check that your method takes the correct variable type.<br>"+
+					"This is set when creating the method."+AdviceStrings.methodAdvice() );
 			ans=ans=new Answer(correct_answers, methodName,input.length, feedback.getFeedback(), weight);
 			
 		}

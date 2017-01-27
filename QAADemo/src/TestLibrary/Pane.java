@@ -29,7 +29,7 @@ public class Pane extends JPanel {
         int counter =1;
         while(t.hasNext()){
         	 JComponent panel = makeTextPanel(t.next());
-        	 panel.setPreferredSize(new Dimension(300, 500));
+        	 panel.setPreferredSize(new Dimension(400, 700));
         	 //panel.setLineWrap(true);
              tabbedPane.addTab("Test "+counter, icon, panel,
                      "Test Results");

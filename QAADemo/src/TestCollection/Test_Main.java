@@ -30,6 +30,12 @@ public class Test_Main {
 		tabs.add(test2.display_feedback());
 		//AdvicePopUp.showAdvice(test2.display_feedback());
 		
+		Fibonacci_Test test3 = new Fibonacci_Test(maxScore, packagename, classname, input1);
+		test3.run_test();
+		tabs.add(test3.display_feedback());
+		
+		//Create and display the feedback window which is 
+		//split into tabs for individual tests.
 		Pane.go(tabs);
 		
 		
